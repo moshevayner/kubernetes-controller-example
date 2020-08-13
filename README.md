@@ -1,3 +1,4 @@
+![CI](https://github.com/MoShitrit/kubernetes-controller-example/workflows/CI/badge.svg)
 # kubernetes-controller-example
 Hello, Kubernetes!
 
