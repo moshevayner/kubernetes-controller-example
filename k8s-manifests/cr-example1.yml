@@ -1,0 +1,7 @@
+apiVersion: hello-k8s.s5t.dev/v1alpha1
+kind: Example
+metadata:
+  name: hello-k8s-example1
+spec:
+  comments: "This is my first ever example, yay!"
+  podName: Unassigned

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-k8s-controller
+  labels:
+    app: hello-k8s-controller
+spec:
+  selector:
+    matchLabels:
+      app: hello-k8s-controller
+  strategy:
+    type: Recreate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hello-k8s-controller
+    spec:
+      serviceAccountName: hello-k8s
+      containers:
+      - name: controller
+        command: ["python", "-u"]
+        args: ["controller.py"]
+        image: mosheshi/kubernetes-controller-example:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 200m
+            memory: 200Mi
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        envFrom:
+        - configMapRef:
+            name: hello-k8s-controller
