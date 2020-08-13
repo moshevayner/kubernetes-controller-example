@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-k8s-controller
+  labels:
+    app: hello-k8s-controller
+data:
+  API_GROUP: 'hello-k8s.s5t.dev'
+  API_PLURAL: 'examples'
+  API_VERSION: 'v1alpha1'
+  NAMESPACE: 'default'

@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hello-k8s
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: hello-k8s
+rules:
+- apiGroups: ["hello-k8s.s5t.dev"]
+  resources: ["*"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: [""]
+  resources: ["pods", "pods/log"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: [""]
+  resources: ["events"]
+  verbs: ["get", "list", "create", "patch"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: hello-k8s
+subjects:
+- kind: ServiceAccount
+  name: hello-k8s
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: hello-k8s
+  apiGroup: rbac.authorization.k8s.io
