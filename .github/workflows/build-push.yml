@@ -9,7 +9,7 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v4
     - name: Build and push Docker images
-      uses: docker/build-push-action@v6.14.0
+      uses: docker/build-push-action@v6.15.0
       with:
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_PASS }}
